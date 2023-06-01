@@ -1,0 +1,11 @@
+name: GacekSkyblockManger
+version: 1.0
+main: me.gacekmpl2.gacekskyblockmanger.Main
+api-version: 1.19
+authors: [ GacekMPL2 ]
+commands:
+  adminchat:
+    usage: /adminchat
+    aliases: [ ach, achat ]
+  GSkyblock:
+    usage: /GSkyblock
