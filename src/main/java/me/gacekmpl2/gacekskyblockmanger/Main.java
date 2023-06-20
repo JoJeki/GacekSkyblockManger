@@ -1,51 +1,45 @@
 package me.gacekmpl2.gacekskyblockmanger;
 
 import me.gacekmpl2.gacekskyblockmanger.commands.AdminChatCommand;
-import me.gacekmpl2.gacekskyblockmanger.commands.ReloadCommand;
+import me.gacekmpl2.gacekskyblockmanger.commands.GSkyBlockCommand;
 import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigLoad;
-import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigSave;
-import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigUtils;
-import me.gacekmpl2.gacekskyblockmanger.essentials.TabCompliter;
-import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.TabCompleter;
-import org.bukkit.configuration.MemorySection;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.enchantments.EnchantmentWrapper;
+import me.gacekmpl2.gacekskyblockmanger.essentials.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Map;
+import java.io.IOException;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
 
     private static Main instance;
 
-    private static Main plugins;
-
     @Override
     public void onEnable() {
-        plugins = this;
         instance = this;
 
-        getLogger().info("Plugin sie wlaczyl");
-        getCommand("adminchat").setExecutor(new AdminChatCommand());
-        getCommand("GSkyblock").setExecutor((CommandExecutor) new ReloadCommand());
-        getCommand("GSkyblock").setTabCompleter((TabCompleter) new TabCompliter());
-        ConfigLoad.loadAll();
+        getLogger().info("[GacekSkyblockManager] Plugin enabled.");
+
+        Objects.requireNonNull(getCommand("adminchat")).setExecutor(new AdminChatCommand());
+        Objects.requireNonNull(getCommand("gskyblock")).setExecutor(new GSkyBlockCommand());
+
+        Objects.requireNonNull(getCommand("gskyblock")).setTabCompleter(new TabCompleter());
+
+        try {
+            ConfigLoad.loadconfig();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void onDisable() {
-        ConfigSave.saveAll();
+
+        getLogger().info("[GacekSkyblockManager] Plugin disabled.");
+
     }
 
     public static Main getInstance() {
         return instance;
-    }
-
-    public static Main getPlugin() {
-        return plugins;
     }
 }

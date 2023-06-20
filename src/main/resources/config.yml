@@ -1,6 +1,14 @@
-# ######Global#########
-  globalprefix: '&f&l[&aSkyblockManager&f&l] '
-# ######ADMINCHAT######
-  prefix: '&7[&c&lAC&7] '
-  nickcolor: '&c'
-  textcolor: ' &7» '
+
+sbmanager:
+
+  ###### GLOBAL #####
+
+  globalprefix: "&f&l[&aSkyblockManager&f&l] "
+
+  #### ADMINCHAT ####
+
+  prefix: "&7[&c&lAC&7] "
+  nickcolor: "&c"
+  textcolor: " &7»"
+  ytmessage: "&7Zapraszamy na &c&lLIVE&7:"
+  hoverytmessage: "&7Kliknij tutaj, aby otworzyć!"
