@@ -2,7 +2,7 @@ package me.gacekmpl2.gacekskyblockmanger;
 
 import me.gacekmpl2.gacekskyblockmanger.commands.AdminChatCommand;
 import me.gacekmpl2.gacekskyblockmanger.commands.GSkyBlockCommand;
-import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigLoad;
+import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigUtils;
 import me.gacekmpl2.gacekskyblockmanger.essentials.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,7 +25,7 @@ public final class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("gskyblock")).setTabCompleter(new TabCompleter());
 
         try {
-            ConfigLoad.loadconfig();
+            ConfigUtils.loadconfig();
         } catch (IOException e) {
             e.printStackTrace();
         }

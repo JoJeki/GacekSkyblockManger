@@ -1,7 +1,7 @@
 package me.gacekmpl2.gacekskyblockmanger.commands;
 
 import me.gacekmpl2.gacekskyblockmanger.essentials.ChatUtils;
-import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigLoad;
+import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigUtils;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
@@ -22,11 +22,11 @@ public class GSkyBlockCommand implements CommandExecutor {
             if (sender.hasPermission("skyblockmanager.command.reload")) {
                 if (args[0].equalsIgnoreCase("reload")) {
                     try {
-                        ConfigLoad.loadconfig();
+                        ConfigUtils.loadconfig();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    sender.sendMessage(ChatUtils.fixColor(ConfigLoad.globalprefix + "&aPrzeładowano."));
+                    sender.sendMessage(ChatUtils.fixColor(ConfigUtils.prefix + " " + "&aPrzeładowano."));
                     return true;
                 }
             } else {
@@ -39,8 +39,8 @@ public class GSkyBlockCommand implements CommandExecutor {
             if (sender.hasPermission("skyblockmanager.command.livebroadcast")) {
                 if (args[0].equalsIgnoreCase("ogloslive")) {
                     String url = args[1];
-                    net.md_5.bungee.api.chat.TextComponent txt = new net.md_5.bungee.api.chat.TextComponent(ChatUtils.fixColor(ConfigLoad.globalprefix + " " + ConfigLoad.ytmessage));
-                    txt.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatUtils.fixColor(ConfigLoad.hoverytmessage))));
+                    net.md_5.bungee.api.chat.TextComponent txt = new net.md_5.bungee.api.chat.TextComponent(ChatUtils.fixColor(ConfigUtils.prefix + " " + ConfigUtils.YTbroadcast));
+                    txt.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatUtils.fixColor(ConfigUtils.YTbroadcastHover))));
                     txt.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendMessage(" ");

@@ -3,12 +3,21 @@ sbmanager:
 
   ###### GLOBAL #####
 
-  globalprefix: "&f&l[&aSkyblockManager&f&l] "
+  prefix: "&a&lSKYBLOCK &f»"
 
   #### ADMINCHAT ####
 
-  prefix: "&7[&c&lAC&7] "
+  acprefix: "&7[&c&lAC&7]"
   nickcolor: "&c"
-  textcolor: " &7»"
+  textcolor: "&7»"
   ytmessage: "&7Zapraszamy na &c&lLIVE&7:"
   hoverytmessage: "&7Kliknij tutaj, aby otworzyć!"
+
+
+
+  public static String prefix = "&a&lSKYBLOCK &f»";
+  public static String ACprefix = "&7[&c&lAC&7]";
+  public static String ACnickcolor = "&c";
+  public static String ACtextcolor = "&7»";
+  public static String YTbroadcast = "&7Zapraszamy na &c&lLIVE! &8[KLIKNIJ TUTAJ]";
+  public static String YTbroadcastHover = "&7Kliknij tutaj, aby otworzyć!";

@@ -1,10 +1,7 @@
 package me.gacekmpl2.gacekskyblockmanger.commands;
 
 import me.gacekmpl2.gacekskyblockmanger.essentials.ChatUtils;
-import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigLoad;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.hover.content.Text;
+import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,8 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.*;
 
 public class AdminChatCommand implements CommandExecutor {
 
@@ -31,7 +26,7 @@ public class AdminChatCommand implements CommandExecutor {
             String name;
 
             for (String key : args) {
-                ach.append(" " + key);
+                ach.append(key + " ");
             }
 
             if(sender instanceof ConsoleCommandSender) {
@@ -43,7 +38,7 @@ public class AdminChatCommand implements CommandExecutor {
 
             for(Player target : Bukkit.getOnlinePlayers()){
                 if(target.hasPermission("skyblockmanager.adminchat")){
-                    target.sendMessage(ChatUtils.fixColor(ConfigLoad.prefix + ConfigLoad.nickcolor + name + ConfigLoad.textcolor + ach));
+                    target.sendMessage(ChatUtils.fixColor(ConfigUtils.ACprefix + " " + ConfigUtils.ACnickcolor + name + " " + ConfigUtils.ACtextcolor + ach));
                 }
             }
 
