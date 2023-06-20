@@ -35,21 +35,22 @@ public class GSkyBlockCommand implements CommandExecutor {
             }
 
         }
-        if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("ogloslive")) {
-                String url = args[1];
-                net.md_5.bungee.api.chat.TextComponent txt = new net.md_5.bungee.api.chat.TextComponent(ChatUtils.fixColor(ConfigLoad.globalprefix + " " + ConfigLoad.ytmessage));
-                txt.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatUtils.fixColor(ConfigLoad.hoverytmessage))));
-                txt.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    player.sendMessage(" ");
-                    player.spigot().sendMessage(txt);
-                    player.sendMessage(" ");
+        if (!sender.hasPermission("skyblockmanager.command.youtube")) {
+            if (args.length == 2) {
+                if (args[0].equalsIgnoreCase("ogloslive")) {
+                    String url = args[1];
+                    net.md_5.bungee.api.chat.TextComponent txt = new net.md_5.bungee.api.chat.TextComponent(ChatUtils.fixColor(ConfigLoad.globalprefix + " " + ConfigLoad.ytmessage));
+                    txt.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatUtils.fixColor(ConfigLoad.hoverytmessage))));
+                    txt.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.sendMessage(" ");
+                        player.spigot().sendMessage(txt);
+                        player.sendMessage(" ");
 
+                    }
                 }
             }
         }
-
         return true;
     }
 }
