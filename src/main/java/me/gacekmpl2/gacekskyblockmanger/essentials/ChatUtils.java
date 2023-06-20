@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 
 public class ChatUtils {
 
-    private static String prefix = "&f&l[&a&lSky&2&lBlock&f&l] ";
 
     /**
      * Changes & to minecraft colors
@@ -34,7 +33,7 @@ public class ChatUtils {
      * @param message Message to send
      */
     public static void sendMessage(Player player, String message){
-        player.sendMessage(fixColor(prefix + message));
+        player.sendMessage(fixColor(Config.globalprefix + message));
     }
 
     /**
@@ -43,7 +42,7 @@ public class ChatUtils {
      * @param message Message to send
      */
     public static void sendMessage(CommandSender player, String message){
-        player.sendMessage(fixColor(prefix + message));
+        player.sendMessage(fixColor(Config.globalprefix + message));
     }
 
 

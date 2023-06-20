@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class ConfigLoad {
     public static void loadAll() {
         load();
+        Config.loadconfig();
     }
 
     public static void load() {

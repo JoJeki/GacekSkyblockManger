@@ -1,1 +1,6 @@
-config:
+# ######Global#########
+  globalprefix: '&f&l[&aSkyblockManager&f&l] '
+# ######ADMINCHAT######
+  prefix: '&7[&c&lAC&7] '
+  nickcolor: '&c'
+  textcolor: ' &7» '
