@@ -17,10 +17,10 @@ public class ChatUtils {
     }
 
     public static void sendMessage(Player player, String message){
-        player.sendMessage(fixColor(ConfigLoad.globalprefix + message));
+        player.sendMessage(fixColor(ConfigLoad.globalprefix + " " + message));
     }
     public static void sendMessage(CommandSender player, String message){
-        player.sendMessage(fixColor(ConfigLoad.globalprefix + message));
+        player.sendMessage(fixColor(ConfigLoad.globalprefix + " " + message));
     }
 
 

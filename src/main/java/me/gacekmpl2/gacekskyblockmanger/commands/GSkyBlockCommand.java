@@ -16,27 +16,27 @@ import java.io.IOException;
 
 
 public class GSkyBlockCommand implements CommandExecutor {
-    public boolean onCommand(CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-
-        if (!sender.hasPermission("skyblockmanager.command.admin")) {
-            ChatUtils.sendMessage(sender, "&cBrak uprawnień!");
-            return true;
-        }
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
         if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("reload")) {
-                try {
-                    ConfigLoad.loadconfig();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            if (sender.hasPermission("skyblockmanager.command.reload")) {
+                if (args[0].equalsIgnoreCase("reload")) {
+                    try {
+                        ConfigLoad.loadconfig();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    sender.sendMessage(ChatUtils.fixColor(ConfigLoad.globalprefix + "&aPrzeładowano."));
+                    return true;
                 }
-                sender.sendMessage(ChatUtils.fixColor(ConfigLoad.globalprefix + " &aPrzeładowano."));
+            } else {
+                ChatUtils.sendMessage(sender, "&cBrak uprawnień!");
                 return true;
             }
 
         }
-        if (!sender.hasPermission("skyblockmanager.command.youtube")) {
-            if (args.length == 2) {
+        if (args.length == 2) {
+            if (sender.hasPermission("skyblockmanager.command.livebroadcast")) {
                 if (args[0].equalsIgnoreCase("ogloslive")) {
                     String url = args[1];
                     net.md_5.bungee.api.chat.TextComponent txt = new net.md_5.bungee.api.chat.TextComponent(ChatUtils.fixColor(ConfigLoad.globalprefix + " " + ConfigLoad.ytmessage));
@@ -49,8 +49,12 @@ public class GSkyBlockCommand implements CommandExecutor {
 
                     }
                 }
+            } else {
+                ChatUtils.sendMessage(sender, "&cBrak uprawnień!");
+                return true;
             }
         }
+
         return true;
     }
 }
