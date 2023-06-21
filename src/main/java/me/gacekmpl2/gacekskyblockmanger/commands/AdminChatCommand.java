@@ -38,7 +38,7 @@ public class AdminChatCommand implements CommandExecutor {
 
             for(Player target : Bukkit.getOnlinePlayers()){
                 if(target.hasPermission("skyblockmanager.adminchat")){
-                    target.sendMessage(ChatUtils.fixColor(ConfigUtils.ACprefix + " " + ConfigUtils.ACnickcolor + name + " " + ConfigUtils.ACtextcolor + ach));
+                    target.sendMessage(ChatUtils.fixColor(ConfigUtils.ACprefix + " " + ConfigUtils.ACnickcolor + name + " " + ConfigUtils.ACtextcolor +" "+ ach));
                 }
             }
 
