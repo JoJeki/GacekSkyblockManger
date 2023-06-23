@@ -4,6 +4,7 @@ import me.gacekmpl2.gacekskyblockmanger.commands.AdminChatCommand;
 import me.gacekmpl2.gacekskyblockmanger.commands.GSkyBlockCommand;
 import me.gacekmpl2.gacekskyblockmanger.essentials.ConfigUtils;
 import me.gacekmpl2.gacekskyblockmanger.essentials.TabCompleter;
+import me.gacekmpl2.gacekskyblockmanger.listeners.BreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -23,6 +24,9 @@ public final class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("gskyblock")).setExecutor(new GSkyBlockCommand());
 
         Objects.requireNonNull(getCommand("gskyblock")).setTabCompleter(new TabCompleter());
+
+
+        getServer().getPluginManager().registerEvents(new BreakEvent(), instance);
 
         try {
             ConfigUtils.loadconfig();

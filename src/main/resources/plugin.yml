@@ -16,3 +16,7 @@ permissions:
       skyblockmanager.command.reload: true
       skyblockmanager.command.livebroadcast: true
       skyblockmanager.adminchat: true
+      skyblockmanager.replant.wheat: true
+      skyblockmanager.replant.potato: true
+      skyblockmanagert.replant.carrot: true
+      skyblockmanager.replant.beetroot: true
