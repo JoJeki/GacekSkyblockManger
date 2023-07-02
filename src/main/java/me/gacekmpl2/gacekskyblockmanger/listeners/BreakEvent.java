@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,36 +40,9 @@ public class BreakEvent implements Listener {
         }
 
         if (isFullyGrown(block)) {
-            Material seedType = CropHandler.getSeedFromCrop(cropBlockType);
-            if (inventory.contains(seedType)) {
-                removeSeed(inventory, seedType);
-                replantCrop(block.getLocation(), cropBlockType);
-            }
+            replantCrop(block.getLocation(), cropBlockType, false);
+            event.setDropItems(false);
         }
-    }
-
-    public void removeSeed(PlayerInventory inventory, Material seedType) {
-        int seedIndexLocation = -1;
-        ItemStack currentItems;
-
-        for (int slotIndex = 0; slotIndex < inventory.getSize(); slotIndex++) {
-            currentItems = inventory.getItem(slotIndex);
-            if (currentItems != null) {
-                if (currentItems.getType() == seedType) {
-                    seedIndexLocation = slotIndex;
-                    break;
-                }
-            }
-        }
-
-        if (seedIndexLocation != -1) {
-            ItemStack seedItemStack = inventory.getItem(seedIndexLocation);
-            if (seedItemStack != null) {
-                int seedAmount = seedItemStack.getAmount();
-                seedItemStack.setAmount(seedAmount - 1);
-            }
-        }
-
     }
 
     public boolean isFullyGrown(Block block) {
@@ -83,9 +57,23 @@ public class BreakEvent implements Listener {
         return player.hasPermission("skyblockmanager.replant.all") || player.hasPermission(cropPermission);
     }
 
-    public void replantCrop(Location location, Material cropBlockType) {
+    public void replantCrop(Location location, Material cropBlockType, boolean dropSeeds) {
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
-            location.getBlock().setType(cropBlockType);
+            Block block = location.getBlock();
+            block.setType(cropBlockType);
+
+            if (!dropSeeds) {
+                BlockData blockData = block.getBlockData();
+                if (blockData instanceof Ageable) {
+                    Ageable ageable = (Ageable) blockData;
+                    ageable.setAge(0);
+                    block.setBlockData(ageable);
+                }
+            }
+
+            if (!dropSeeds) {
+                block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(cropBlockType, 1));
+            }
         }, 20L);
     }
 }

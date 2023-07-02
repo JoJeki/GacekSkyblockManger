@@ -27,7 +27,6 @@ public final class Main extends JavaPlugin {
 
 
         getServer().getPluginManager().registerEvents(new BreakEvent(), instance);
-
         try {
             ConfigUtils.loadconfig();
         } catch (IOException e) {

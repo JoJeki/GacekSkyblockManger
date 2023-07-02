@@ -27,7 +27,6 @@ public class ConfigUtils {
         ACtextcolor = config.getString("sbmanager.actextcolor");
         YTbroadcast = config.getString("sbmanager.ytbroadcast");
         YTbroadcastHover = config.getString("sbmanager.ytbroadcasthover");
-
     }
 
     public static YamlConfiguration load(String configName) throws IOException {
