@@ -42,6 +42,8 @@ public class BreakEvent implements Listener {
         if (isFullyGrown(block)) {
             replantCrop(block.getLocation(), cropBlockType, false);
             event.setDropItems(false);
+        } else {
+            event.setCancelled(true);
         }
     }
 
